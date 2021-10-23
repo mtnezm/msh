@@ -10,24 +10,27 @@ _command_exists() {
   [ "$(type -P "$1")" ]
 }
 
-# Load MSH default resources and those from active profiles
-function reload(){
-  source ~/.bashrc
-}
-
 # Manage shell components from the terminal
 msh() {
 
   if [ -z "$1" ]; then
-    echo -e "\n msh - Manage your terminal behavior with ease.\n\n Commands:\n\n edit\tModify the different components to your like\n show\tList the available/active items for the different components\n\n Copyright (C) 2020-2021 Miguel Martínez <mtnezm@linux.com>\n Distributed under terms of the MIT license.\n"
+    echo -e "\n msh - Manage your terminal behavior with ease.\n\n Commands:\n\n edit\tModify the different components to your like\n reload\tApply changes to your current shell session\n show\tList the available/active items for the different components\n\n Copyright (C) 2020-2021 Miguel Martínez <mtnezm@linux.com>\n Distributed under terms of the MIT license.\n"
     return 0
   fi
 
   case "$1" in
 
     "-h"|"--help")
-      echo -e "\n Manage your terminal addons with ease.\n\n Usage:\n\n  $ msh show -h\n  $ msh edit -h\n\n Copyright (C) 2020-2021 Miguel Martínez <mtnezm@linux.com>\n Distributed under terms of the MIT license.\n"
+      echo -e "\n Manage your terminal behavior with ease.\n\n Usage:\n\n  $ msh reload\n\n  $ msh show -h\n  $ msh edit -h\n\n Copyright (C) 2020-2021 Miguel Martínez <mtnezm@linux.com>\n Distributed under terms of the MIT license.\n"
       return 0
+    ;;
+
+    reload)
+      if [ "$#" -gt 1 ]; then
+        echo -e "\n Usage: $ msh reload\n"
+      else
+        source ~/.bashrc
+      fi
     ;;
 
     show)
@@ -112,7 +115,7 @@ msh() {
           ;;
           components)
             ${EDITOR} "${MSH_CORE}/components.msh"
-            reload
+            source ~/.bashrc
           ;;
           plugin)
             if [ "$#" -gt 3 ]; then
@@ -138,7 +141,7 @@ msh() {
               echo -e "\n Error: Two arguments needed. Options available are: alias|completion|plugin|profile <component_name>\n\n Example:\n  $ msh edit profile main\n"
               return 1
             elif [ -f "${MSH_PROFILES}/$3/main.bash" ]; then
-              ${EDITOR} "${MSH_PROFILES}/$3/main.bash" && reload || echo -e "\n Profile "$3" does not exist. Check \"${MSH_PROFILES}\" directory.\n"
+              ${EDITOR} "${MSH_PROFILES}/$3/main.bash" && source ~/.bashrc || echo -e "\n Profile "$3" does not exist. Check \"${MSH_PROFILES}\" directory.\n"
             else
               echo -e "\n Error: profile \"$3\" does not exist.\n"
             fi
@@ -146,7 +149,7 @@ msh() {
           theme)
             if [ -f "${MSH_THEMES}/${MSH_THEME}/${MSH_THEME}.theme.sh" ]; then
               ${EDITOR} "${MSH_THEMES}/${MSH_THEME}/${MSH_THEME}.theme.sh"
-              reload
+              source ~/.bashrc
             else
               echo -e "\n Error: Configuration file not found for theme \"${MSH_THEME}\".\n"
               return 1

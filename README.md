@@ -16,7 +16,7 @@ All those different identities, options and possibilities can be separately defi
 
 To enable a new profile, just:
 
-1. Copy the `tools/templates/profile` directory to a new `include/profiles/<PROFILE_NAME>/` directory, or directly edit the 'default' one that comes included
+1. Copy the `tools/templates/example-profile` directory to a new `include/profiles/<PROFILE_NAME>/` directory, or directly edit the 'default' one that comes included
 2. Store specific stuff there (SSH configuration files, VPN connection details, Systemd service templates... whatever you might need)
 3. Add its name to the 'profiles' array located in `core/components.msh` file
 4. Run `reload` to start using it

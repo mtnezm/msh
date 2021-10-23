@@ -19,12 +19,12 @@ To enable a new profile, just:
 1. Copy the `tools/templates/example-profile` directory to a new `include/profiles/<PROFILE_NAME>/` directory, or directly edit the 'default' one that comes included
 2. Store specific stuff there (SSH configuration files, VPN connection details, Systemd service templates... whatever you might need)
 3. Add its name to the 'profiles' array located in `core/components.msh` file
-4. Run `reload` to start using it
+4. Run `msh reload` to start using it
 
 Also, keep in mind that:
 
 - To load multiple SSH config files into the `${HOME}/.ssh/config` file make sure you store each one in the following path: `include/profiles/<PROFILE_NAME>/ssh/config`
-- To disable a profile, just comment it out or remove it from the array located in the `core/components.msh` file and run `reload` to apply changes
+- To disable a profile, just comment it out or remove it from the array located in the `core/components.msh` file and run `msh reload` to apply changes
 
 ### **INSTALLATION**
 

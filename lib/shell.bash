@@ -9,23 +9,23 @@
 # History
 ##
 
-shopt -s histappend  # Append to the history file, don't overwrite it
-shopt -s cmdhist     # Save multi-line commands as one command
-shopt -s histreedit  # use readline on history
-shopt -s histverify  # load history line onto readline buffer for editing
-shopt -s lithist     # save history with newlines instead of ; where possible
+shopt -s histappend                       # Append to the history file, don't overwrite it
+shopt -s cmdhist                          # Save multi-line commands as one command
+shopt -s histreedit                       # use readline on history
+shopt -s histverify                       # load history line onto readline buffer for editing
+shopt -s lithist                          # save history with newlines instead of ; where possible
 
-HIST_STAMPS="yyyy-mm-dd"            # Time stamps. Available formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-HISTSIZE=500000                     # Huge history. Doesn't appear to slow
-HISTFILESIZE=100000                 #   things down, so why not?
-HISTCONTROL="erasedups:ignoreboth"  # Avoid duplicate entries
-HISTIGNORE="&:[ ]*:exit:history:q"  # Don't record some commands
-HISTTIMEFORMAT='%F %T '             # Use standard ISO 8601 timestamp. %F equals to %Y-%m-%d, %T to %H:%M:%S (24h format)
+HIST_STAMPS="yyyy-mm-dd"                  # Time stamps. Available formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+HISTSIZE=500000                           # Huge history. Doesn't appear to slow
+HISTFILESIZE=100000                       #   things down, so why not?
+HISTCONTROL="erasedups:ignoreboth"        # Avoid duplicate entries
+HISTIGNORE="&:[ ]*:exit:history:q"        # Don't record some commands
+HISTTIMEFORMAT='%F %T '                   # Use standard ISO 8601 timestamp. %F equals to %Y-%m-%d, %T to %H:%M:%S (24h format)
 
-bind '"\e[A": history-search-backward'  #
-bind '"\e[B": history-search-forward'   # Enable incremental history search with up/down arrows (also Readline goodness)
-bind '"\e[C": forward-char'             # Learn more about this here: http://codeinthehole.com/writing/the-most-important-command-line-tip-incremental-hi
-bind '"\e[D": backward-char'            #
+bind '"\e[A": history-search-backward'    #
+bind '"\e[B": history-search-forward'     # Enable incremental history search with up/down arrows (also Readline goodness)
+bind '"\e[C": forward-char'               # Learn more about this here: http://codeinthehole.com/writing/the-most-important-command-line-tip-incremental-hi
+bind '"\e[D": backward-char'              #
 
 
 ####

@@ -44,7 +44,7 @@ read -n 1 -p " Proceed? (y/n): " CONFIRMATION
 case ${CONFIRMATION} in
 
   y)  echo -e "\n\n OK! Installing MSH...\n"
-      install_msh && source ~/.bashrc && (echo -e "\n MSH has been successfully installed. Please restart your terminal or run 'source ~/.bashrc' to start using it.\n" ; exit 0) \
+      install_msh && (echo -e "\n MSH has been successfully installed. Please restart your terminal or run 'source ~/.bashrc' to start using it.\n" ; exit 0) \
       || (echo -e "\n Something went wrong, could not install MSH.\n" ; exit 1)
   ;;
 

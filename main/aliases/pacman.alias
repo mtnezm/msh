@@ -1,0 +1,79 @@
+####
+# Aliases
+##
+
+alias pacman-update='sudo pacman -Syu'
+alias pacman-uninstall='sudo pacman -Rncs'
+alias pacman-search='sudo pacman -Ss'
+alias pacman-list='sudo pacman -Qe'
+
+####
+# Functions
+##
+
+function pacman-install() {
+  sudo pacman -S "$1" || yay -S "$1"
+}
+
+function aur-search() {
+  if [ -z "$1" ]; then
+    echo "One argument needed"
+    return 1
+  else
+    firefox https://aur.archlinux.org/packages/?K="$1"&SB=p&O=50
+  fi
+}
+
+function aur-install() {
+	if [ -z "$1" ]; then
+		echo "Error: missing AUR package name."
+		return 1
+	else
+    if [[ "$1" == "-h" ]] || [[ "$1" == "--help" ]]; then
+      echo -e "\n  Usage:\n\n  $ aur \$PKGNAME\n"
+      return 0
+    fi
+	if [ $# -gt 1 ]; then
+			echo "Please specify only one package name."
+			return 1
+	fi
+
+	echo -n "[1/4] Downloading source files... "
+	git clone -q https://aur.archlinux.org/$1.git /tmp/$1 &>/dev/null
+
+		if [ $? -ne 0 ]; then
+			echo -e "ERROR\n\n >>> Package download from AUR repository failed. Run this command for further information:\n\t$ git clone https://aur.archlinux.org/$1.git /tmp/$1\n"
+			return 1
+		else
+		  echo "OK"
+		fi
+
+	echo -n "[2/4] Building package... "
+	(cd /tmp/$1 && makepkg -crs --noconfirm &>/dev/null)
+
+		if [ $? -ne 0 ]; then
+			echo -e "ERROR\n\n >>> Package build operation failed. Run this command for further information:\n\t$ cd /tmp/$1 && makepkg -crs\n"
+			return 1
+		else
+		  echo "OK"
+		fi
+
+	echo -n "[3/4] Installing package... "
+	sudo pacman -U --noconfirm $(find /tmp/$1 -name "$1*.tar.zst") &>/dev/null
+
+		if [ $? -ne 0 ]; then
+			echo -e "ERROR\n\n >>> Package installation failed. Run this command for further information:\n\t$ sudo pacman -U --noconfirm $(find /tmp/$1 -name "$1*.tar.zst")\n"
+			return 1
+		else 	echo "OK"
+			echo -n "[4/4] Removing temporary files... "
+			rm -rf /tmp/$1
+		  if [ $? -ne 0 ]; then
+				echo -e "ERROR\n\n >>> Removing temporary files failed. Run this command for further information:\n\t$ rm -rf /tmp/$1\n"
+				return 1
+		  else
+		    echo "OK"
+		  fi
+    fi
+ fi
+
+}

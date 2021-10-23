@@ -1,0 +1,59 @@
+## Introduction
+
+#The `ansible plugin` adds several aliases for useful [ansible](https://docs.ansible.com/ansible/latest/index.html) commands and [aliases](#aliases).
+
+#To use it, add `ansible` to the plugins array of your bashrc file:
+
+#```
+#plugins=(... ansible)
+#```
+
+## Aliases
+
+#| Command                                    | Description                                                         |
+#|:-------------------------------------------|:--------------------------------------------------------------------|
+#| `ansible-version` / `aver`                 | Show the version on ansible installed in this host                  |
+#| `ansible-role-init <role name>` / `arinit` | Creates the Ansible Role as per Ansible Galaxy standard             |
+#| `a`                                        | command `ansible`                                                   |
+#| `aconf`                                    | command `ansible-config`                                            |
+#| `acon`                                     | command `ansible-console`                                           |
+#| `ainv`                                     | command `ansible-inventory`                                         |
+#| `aplaybook`                                | command `ansible-playbook`                                          |
+#| `ainv`                                     | command `ansible-inventory`                                         |
+#| `adoc`                                     | command `ansible-doc`                                               |
+#| `agal`                                     | command `ansible-galaxy`                                            |
+#| `apull`                                    | command `ansible-pull`                                              |
+#| `aval`                                     | command `ansible-vault`                                             |
+
+## Maintainer
+
+### [Deepankumar](https://github.com/deepan10) 
+
+# Functions
+function ansible-version(){
+    ansible --version
+}
+
+function ansible-role-init(){
+    if ! [ -z $1] ; then
+        echo "Ansible Role : $1 Creating...."
+        ansible-galaxy init $1
+        tree $1
+    else
+        echo "Usage : ansible-role-init <role name>"
+        echo "Example : ansible-role-init role1"
+    fi
+}
+
+# Alias
+alias a='ansible '
+alias aconf='ansible-config '
+alias acon='ansible-console '
+alias aver='ansible-version'
+alias arinit='ansible-role-init'
+alias aplaybook='ansible-playbook '
+alias ainv='ansible-inventory '
+alias adoc='ansible-doc '
+alias agal='ansible-galaxy '
+alias apull='ansible-pull '
+alias aval='ansible-vault'

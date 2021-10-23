@@ -1,0 +1,5 @@
+alias sc='sudo systemctl'
+alias scen='sudo systemctl enable --now'
+alias scdr='sudo systemctl daemon-reload'
+alias scstop='sudo systemctl stop'
+alias scstart='sudo systemctl start'

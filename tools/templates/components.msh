@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+
+# Aliases can be found in ${MSH_ALIASES}
+aliases=(
+git
+grep
+ls
+)
+
+# Completions can be found in ${MSH_COMPLETIONS}
+completions=(
+github
+makefile
+ssh
+)
+
+# Plugins can be found in ${MSH_PLUGINS}
+plugins=(
+alias-completion
+ansible
+progress
+)
+
+# Profiles can be found in ${MSH_PROFILES}
+profiles=(
+default
+)

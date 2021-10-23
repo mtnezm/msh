@@ -1,0 +1,150 @@
+####
+# Editors
+##
+
+alias nano='nano -W'          # Preferred 'nano' implementation
+alias snano="sudo nano"
+
+VIM=$(command -v vim)
+GVIM=$(command -v gvim)
+MVIM=$(command -v mvim)
+NVIM=$(command -v nvim)
+
+alias vi="/bin/nvim -i NONE"
+alias vim="/bin/nvim -i NONE"
+alias svim="sudo vim"
+
+[[ -n $VIM ]] && alias v=$VIM
+
+# open vim in new tab is taken from http://stackoverflow.com/questions/936501/let-gvim-always-run-a-single-instancek
+case $OSTYPE in
+  darwin*)
+  [[ -n $MVIM ]] && function mvimt { command mvim --remote-tab-silent "$@" || command mvim "$@"; }
+    ;;
+  *)
+    [[ -n $GVIM ]] && function gvimt { command gvim --remote-tab-silent "$@" || command gvim "$@"; }
+    ;;
+esac
+
+
+####
+# cd
+##
+
+alias cd..='cd ../'               # Go back 1 directory level (for fast typers)
+alias ..='cd ../'                 # Go back 1 directory level
+alias ...='cd ../../'             # Go back 2 directory levels
+alias .3='cd ../../../'           # Go back 3 directory levels
+alias .4='cd ../../../../'        # Go back 4 directory levels
+alias .5='cd ../../../../../'     # Go back 5 directory levels
+alias .6='cd ../../../../../../'  # Go back 6 directory levels
+
+
+####
+# Files and directories
+##
+
+alias mkdir='mkdir -pv' # Preferred 'mkdir' implementation
+alias md='mkdir -pv'
+alias rd='rmdir'
+
+# Move files to hidden folder in tmp, that gets cleared on each reboot
+del() {
+  mkdir -p /tmp/.trash && mv "$@" /tmp/.trash
+}
+
+alias qfind="find . -name " # Quickly search for file
+alias cp='cp -iv'           # Preferred 'cp' implementation
+alias mv='mv -iv'           # Preferred 'mv' implementation
+alias rm='rm -i'            # Preferred 'rm' implementation
+alias less='less -FSRXc'    # Preferred 'less' implementation
+
+# Create a ZIP archive of a folder
+zipf () {
+  zip -r "$1".zip "$1"
+}
+
+# Shorten extract
+alias xt="extract"
+
+# Extract most know archives with one command
+extract () {
+  if [ -f "$1" ] ; then
+    case "$1" in
+      *.tar.bz2)   tar xjf "$1"     ;;
+      *.tar.gz)    tar xzf "$1"     ;;
+      *.bz2)       bunzip2 "$1"     ;;
+      *.rar)       unrar e "$1"     ;;
+      *.gz)        gunzip "$1"      ;;
+      *.tar)       tar xf "$1"      ;;
+      *.tbz2)      tar xjf "$1"     ;;
+      *.tgz)       tar xzf "$1"     ;;
+      *.zip)       unzip "$1"       ;;
+      *.Z)         uncompress "$1"  ;;
+      *.7z)        7z x "$1"        ;;
+      *)     echo "'$1' cannot be extracted via extract()" ;;
+    esac
+  else
+    echo "'$1' is not a valid file"
+  fi
+}
+
+# Display whatever file is regular file or folder
+cat() {
+  for i in "$@"; do
+    if [ -d "$i" ]; then
+      ls "$i"
+    else
+      /bin/cat "$i"
+    fi
+  done
+}
+
+
+####
+# du
+##
+
+alias dud='du -d 1 -h'                      # Short and human-readable file listing
+alias duf='du -sh *'                        # Short and human-readable directory listing
+
+
+####
+# clear
+##
+
+alias c='clear'
+alias cls='clear -x'
+
+
+####
+# shell
+##
+
+alias q='exit'
+
+alias fix_stty='stty sane'                  # fix_stty:     Restore terminal settings when screwed up
+alias cic='set completion-ignore-case On'   # cic:          Make tab-completion case-insensitive
+alias tree='tree -C'
+
+# Mute output of a command
+quiet () {
+  "$*" &> /dev/null &
+}
+
+
+####
+# Time
+##
+
+alias bdate="date '+%a, %b %d %Y %T %Z'"
+alias cal3='cal -3'
+alias da='date "+%Y-%m-%d %A    %T %Z"'
+alias daysleft='echo "There are $(($(date +%j -d"Dec 31, $(date +%Y)")-$(date +%j))) left in year $(date +%Y)."'
+alias epochtime='date +%s'
+alias mytime='date +%H:%M:%S'
+alias secconvert='date -d@1234567890'
+alias stamp='date "+%Y%m%d%a%H%M"'
+alias timestamp='date "+%Y%m%dT%H%M%S"'
+alias today='date +"%A, %B %-d, %Y"'
+alias weeknum='date +%V'

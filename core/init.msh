@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+#
+# This file is invoked by ~/.bashrc and triggers
+# everything that brings your shell to the next level
+#
+
+#
+# Load MSH components and essential variables
+#
+
+for MSH_CORE_FILE in components.msh vars.msh; do
+  source ${HOME}/.msh/core/${MSH_CORE_FILE}
+done
+
+#
+# Load MSH libraries
+#
+
+for MSH_LIB_FILE in ${MSH_LIB_FILES[@]}; do
+    source ${MSH_LIB_FILE}
+done

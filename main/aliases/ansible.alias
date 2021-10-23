@@ -1,0 +1,17 @@
+####
+# Aliases
+##
+
+alias ans='ansible'
+alias ansp='ansible-playbook'
+alias ansv='ansible-vault'
+alias ansconn='ansible-connection'
+alias ansd='ansible-doc'
+alias ansi='ansible-inventory'
+alias anspl='ansible-pull'
+alias anst='ansible-test'
+alias ansver='ansible-version'
+alias ansconf='ansible-config'
+alias anscons='ansible-console'
+alias ansg='ansible-galaxy'
+alias ansri='ansible-role-init'

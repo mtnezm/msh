@@ -1,0 +1,18 @@
+alias kc='kubectl'
+alias kcgc='kubectl config get-contexts'
+alias kcuc='kubectl config use-context'
+alias kcgp='kubectl get pods'
+alias kcgd='kubectl get deployments'
+alias kcgn='kubectl get nodes'
+alias kcdp='kubectl describe pod'
+alias kcdd='kubectl describe deployment'
+alias kcdn='kubectl describe node'
+alias kcgpan='kubectl get pods --all-namespaces'
+alias kcgdan='kubectl get deployments --all-namespaces'
+
+# launches a disposable netshoot pod in the k8s cluster
+alias kcnetshoot='kubectl run --generator=run-pod/v1 netshoot-$(date +%s) --rm -i --tty --image nicolaka/netshoot -- /bin/bash'
+
+alias kcaf='kubectl apply -f'
+alias kcdf='kubectl delete -f'
+alias kcgpon='kubectl get pod -o=custom-columns=NAME:.metadata.name,STATUS:.status.phase,NODE:.spec.nodeName --all-namespaces'

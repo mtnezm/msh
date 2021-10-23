@@ -11,7 +11,7 @@ function uninstall_msh() {
     echo -e "\nWARNING: no ${HOME}/.bashrc backup file found, cannot restore a version of ~/.bashrc file previous to MSH installation\n"
   fi
 
-  if [ -d ${HOME}/.ssh.old ]; then              # Restore previous SSH config file
+  if [ -d ${HOME}/.ssh.old ]; then              # Restore previous SSH config files
     mv ${HOME}/.ssh/ /tmp/
     mv ${HOME}/.ssh.old ${HOME}/.ssh
   else

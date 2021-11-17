@@ -17,8 +17,11 @@ function install_msh() {
 
   if [ -d ${HOME}/.ssh/ ]; then                   # Back up existing SSH config
     mv ${HOME}/.ssh{,.old}
+    mkdir ${HOME}/.ssh
+    touch ${HOME}/.ssh/config
   else
     mkdir ${HOME}/.ssh
+    touch ${HOME}/.ssh/config
   fi
 
   cp -f ${MSH_TEMPLATES}/bashrc ${HOME}/.bashrc   # Replace old .bashrc file

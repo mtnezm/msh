@@ -1,8 +1,8 @@
-### **DESCRIPTION**
+## Description
 
 This is a shameless fork and refactorized version of [Oh-My-Bash](https://github.com/ohmybash/oh-my-bash) with some extra power pills.
 
-### **USE CASES**
+## Use cases
 
 You may find this tool interesting when:
 
@@ -12,7 +12,7 @@ You may find this tool interesting when:
 
 All those different identities, options and possibilities can be separately defined inside what we call "profiles".
 
-### **MULTIPLE PROFILES**
+### Multiple profiles
 
 To enable a new profile, just:
 
@@ -26,7 +26,7 @@ Also, keep in mind that:
 - To load multiple SSH config files into the `${HOME}/.ssh/config` file make sure you store each one in the following path: `include/profiles/<PROFILE_NAME>/ssh/config`
 - To disable a profile, just comment it out or remove it from the array located in the `core/components.msh` file and run `msh reload` to apply changes
 
-### **INSTALLATION**
+## Installation
 
 1. Clone this repository:
 
@@ -60,7 +60,7 @@ This will:
 
 Note that the replacements made will not delete original file/dirs found, but instead will keep them by renaming each one to `/path/to/<file-or-dir.old>`.
 
-### **MAKE THINGS HANDY**
+## Make things handy
 
 Some options provided by the `msh` command (available after installing MSH) are:
 
@@ -68,7 +68,7 @@ Some options provided by the `msh` command (available after installing MSH) are:
 - `reload`: Apply changes after enabling/disabling/editing a component or profile without having to close and re-open the terminal
 - `show`: List the different elements managed by MSH
 
-### **SCHEMA**
+## Schema
 
 Current repository structure is as follows:
 
@@ -78,21 +78,21 @@ Current repository structure is as follows:
 - `main/`: Key elements of the tool (aliases, completions, plugins and themes)
 - `tools/`: Utilities related to the project, such as MSH installation and removal scripts and templates for new profiles
 
-### **ALIASES, COMPLETIONS AND PLUGINS**
+### Aliases, completions and plugins
 
 - Those, along with profiles, are what we call 'components' in this project
 - You can add as many new components as you want. The only thing to keep in mind is to save your new stuff with a file extension according to the component type (i.e. for a new aliases file, just save it to the `main/aliases` directory and name it `new_aliases.alias`)
 
-### **THEMES**
+## Themes
 
 - Additional themes can be found, written, downloaded and placed to the `main/themes` directory
 - The default shell theme can be changed by modifying the `${MSH_THEME}` variable, located inside the `core/vars.msh` file
 
-### **DEPENDENCIES**
+## Dependencies
 
-Nothing that Bash (>= 4.0) does not bring by default, as far as I know.
+Nothing that Bash (>= 4.0) does not bring by default, as far as I know. Some themes might have specific dependencies.
 
-### **UNINSTALL**
+## Uninstall
 
 If you want to stop using MSH:
 
@@ -110,6 +110,6 @@ This will:
 - Restore backed up stuff that was renamed at MSH installation time (`${HOME}/.bashrc.old` and `${HOME}/.ssh.old`)
 - Remove the whole `${MSH}` directory and its contents
 
-### **LICENSE**
+## License
 
 MSH is released under the MIT license.

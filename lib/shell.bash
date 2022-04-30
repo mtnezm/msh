@@ -14,6 +14,7 @@ shopt -s cmdhist                          # Save multi-line commands as one comm
 shopt -s histreedit                       # use readline on history
 shopt -s histverify                       # load history line onto readline buffer for editing
 shopt -s lithist                          # save history with newlines instead of ; where possible
+shopt -s autocd                           # Prepend 'cd' when entering just a path
 
 HIST_STAMPS="yyyy-mm-dd"                  # Time stamps. Available formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
 HISTSIZE=500000                           # Huge history. Doesn't appear to slow

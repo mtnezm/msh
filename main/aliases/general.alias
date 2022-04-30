@@ -148,3 +148,6 @@ alias stamp='date "+%Y%m%d%a%H%M"'
 alias timestamp='date "+%Y%m%dT%H%M%S"'
 alias today='date +"%A, %B %-d, %Y"'
 alias weeknum='date +%V'
+
+# Preferred 'diff' implementation
+alias diff='diff --color=auto'

@@ -1,4 +1,5 @@
 alias kc='kubectl'
+alias wkc='watch kubectl'
 alias kcgc='kubectl config get-contexts'
 alias kcuc='kubectl config use-context'
 alias kcgp='kubectl get pods'

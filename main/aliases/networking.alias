@@ -9,14 +9,16 @@ alias ipInfo0='ifconfig getpacket en0'                    # ipInfo0:      Get in
 alias ipInfo1='ifconfig getpacket en1'                    # ipInfo1:      Get info on connections for en1
 alias openPorts='sudo lsof -i | grep LISTEN'              # openPorts:    All listening connections
 
-alias cl='curl -L'                        # follow redirects
-alias clo='curl -L -O'                    # follow redirects, download as original name
-alias cloc='curl -L -C - -O'              # follow redirects, download as original name, continue
-alias clocr='curl -L -C - -O --retry 5'   # follow redirects, download as original name, continue, retry 5 times
-alias clb='curl -L -I'                    # follow redirects, fetch banner
-alias clhead='curl -D - -so /dev/null'    # see only response headers from a get request
+alias cl='curl -L'                          # follow redirects
+alias clo='curl -L -O'                      # follow redirects, download as original name
+alias cloc='curl -L -C - -O'                # follow redirects, download as original name, continue
+alias clocr='curl -L -C - -O --retry 5'     # follow redirects, download as original name, continue, retry 5 times
+alias clb='curl -L -I'                      # follow redirects, fetch banner
+alias clhead='curl -D - -so /dev/null'      # see only response headers from a get request
+alias vurl="curl -Iv $URL |& grep ^Location"  # Verify where a URL is pointing
 
 alias wget='wget -c'                        # Preferred 'wget' implementation (resume download)
+alias ip='ip -color=auto'                   # Preferred 'ip' implementation
 
 ####
 # Functions

@@ -46,7 +46,6 @@ function ansible-role-init(){
 }
 
 # Alias
-alias a='ansible '
 alias aconf='ansible-config '
 alias acon='ansible-console '
 alias aver='ansible-version'

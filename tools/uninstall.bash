@@ -18,6 +18,7 @@ function uninstall_msh() {
     echo -e "\nWARNING: no ${HOME}/.ssh.old path found, cannot restore a version of ~/.ssh/ directory previous to MSH installation\n"
   fi
 
+  rm -f ${HOME}/.mshrc                          # Delete ~/.mshrc file
   rm -rf ${PWD%/*}                              # Delete entire MSH rootdir
 
   cd ${HOME}                                    # Return to ${HOME} directory

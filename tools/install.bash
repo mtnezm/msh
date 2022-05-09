@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
 function install_msh() {
-
   cd $(dirname "$0") && source ../core/vars.msh   # Load MSH environment variables
 
   if [ -d ${MSH} ]; then                          # Check for previous MSH installations
@@ -17,14 +16,12 @@ function install_msh() {
 
   if [ -d ${HOME}/.ssh/ ]; then                   # Back up existing SSH config
     mv ${HOME}/.ssh{,.old}
-    mkdir ${HOME}/.ssh
-    touch ${HOME}/.ssh/config
   else
     mkdir ${HOME}/.ssh
-    touch ${HOME}/.ssh/config
   fi
 
   cp -f ${MSH_TEMPLATES}/bashrc ${HOME}/.bashrc   # Replace old .bashrc file
+  cp -f ${MSH_TEMPLATES}/mshrc ${HOME}/.mshrc     # Install new .mshrc file
 
   # Copy components template into core/ directory
   cp ${MSH_TEMPLATES}/components.msh ${MSH_CORE}/components.msh
@@ -33,8 +30,7 @@ function install_msh() {
   cp -r ${MSH_TEMPLATES}/example-profile ${MSH_PROFILES}/default
   sed -i "s/EXAMPLE_PROFILE/default/g" ${MSH_PROFILES}/default/*.bash
 
-  cd ${HOME}                                      # Get back to $HOME directory
-
+  cd ${HOME} # Get back to $HOME directory
 }
 
 #

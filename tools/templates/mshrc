@@ -1,0 +1,106 @@
+#!/usr/bin/env bash
+
+# If you are adding custom stuff under '${MSH}/include'
+# you can add new variables here accordingly.
+
+####
+# Core
+##
+
+MSH="${HOME}/.msh"
+MSH_THEME="sexy"
+MSH_LIB_FILES=(${MSH}/lib/*bash)
+MSH_ALIASES="${MSH}/main/aliases"
+MSH_COMPLETIONS="${MSH}/main/completions"
+MSH_CORE="${MSH}/core"
+MSH_LIB="${MSH}/lib"
+MSH_PLUGINS="${MSH}/main/plugins"
+MSH_PROFILES="${MSH}/include/profiles"
+MSH_TEMPLATES="${MSH}/tools/templates"
+MSH_THEMES="${MSH}/main/themes"
+MSH_TOOLS="${MSH}/tools"
+
+source ${MSH_LIB}/assets.bash
+source ${MSH_LIB}/shell.bash
+
+# Load the shell theme
+[[ ${MSH_THEME} ]] && source "${MSH_THEMES}/${MSH_THEME}/${MSH_THEME}.theme.sh"
+
+
+####
+# Aliases
+##
+
+# Aliases can be found in ${MSH_ALIASES}
+aliases=(
+ansible
+docker
+git
+kubectl
+terraform
+)
+
+# Inject active aliases into our shell
+for ALIAS in ${aliases[@]}; do
+  if [ -f ${MSH_ALIASES}/${ALIAS}.alias ]; then
+    source ${MSH_ALIASES}/${ALIAS}.alias
+  else
+    echo -e "\nWARNING: Alias \"${ALIAS}\" is enabled but no matching file was found.\n"
+  fi
+done
+
+
+####
+# Completions
+##
+
+# Completions can be found in ${MSH_COMPLETIONS}
+completions=(
+docker
+github
+makefile
+ssh
+)
+
+# Inject active completions into our shell
+for COMPLETION in ${completions[@]}; do
+  if [ -f ${MSH_COMPLETIONS}/${COMPLETION}.completion ]; then
+    source ${MSH_COMPLETIONS}/${COMPLETION}.completion
+  else
+    echo -e "\nWARNING: Completion \"${COMPLETION}\" is enabled but no matching file was found.\n"
+  fi
+done
+
+
+####
+# Plugins
+##
+
+# Plugins can be found in ${MSH_PLUGINS}
+plugins=(
+alias-completion
+ansible
+progress
+)
+
+# Inject active plugins into our shell
+for PLUGIN in ${plugins[@]}; do
+  if [ -f ${MSH_PLUGINS}/${PLUGIN}.plugin ]; then
+    source ${MSH_PLUGINS}/${PLUGIN}.plugin
+  else
+    echo -e "\nWARNING: Plugin \"${PLUGIN}\" is enabled but no matching file was found.\n"
+  fi
+done
+
+
+####
+# Profiles
+##
+
+# Profiles can be found in ${MSH_PROFILES}
+profiles=(
+default
+)
+
+# Load active profiles
+source ${MSH_LIB}/profiles.bash

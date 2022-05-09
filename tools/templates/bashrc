@@ -1,3 +1,2 @@
-[[ $- != *i* ]] && return          # Bail out early if non-interactive
-
-source ${HOME}/.msh/core/init.msh  # Load shell config
+[[ $- != *i* ]] && return   # Bail out early if non-interactive
+source ${HOME}/.mshrc       # Load shell config

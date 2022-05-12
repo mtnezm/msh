@@ -1,7 +1,11 @@
 #!/usr/bin/env bash
 
+MSH="~/.msh"
+MSH_TEMPLATES="~/.msh/tools/templates"
+MSH_PROFILES="~/.msh/include/profiles"
+
 function install_msh() {
-  cd $(dirname "$0") && source ../core/vars.msh   # Load MSH environment variables
+  cd $(dirname "$0")                              # Load MSH environment variables
 
   if [ -d ${MSH} ]; then                          # Check for previous MSH installations
     echo -e "\n WARNING: MSH installation path already exists. To re-install it, please uninstall first.\n"
@@ -10,21 +14,8 @@ function install_msh() {
 
   mv ${PWD%/*} ${MSH}                             # Relocate MSH rootdir
 
-  if [ -f ${HOME}/.bashrc ]; then                 # Back up existing ~/.bashrc file
-  	mv ${HOME}/.bashrc{,.old}
-  fi
-
-  if [ -d ${HOME}/.ssh/ ]; then                   # Back up existing SSH config
-    mv ${HOME}/.ssh{,.old}
-  else
-    mkdir ${HOME}/.ssh
-  fi
-
-  cp -f ${MSH_TEMPLATES}/bashrc ${HOME}/.bashrc   # Replace old .bashrc file
   cp -f ${MSH_TEMPLATES}/mshrc ${HOME}/.mshrc     # Install new .mshrc file
-
-  # Copy components template into core/ directory
-  cp ${MSH_TEMPLATES}/components.msh ${MSH_CORE}/components.msh
+  echo "source ~/.mshrc" >> ~/.bashrc             # Enable MSH
 
   # Enable an empty example profile by default
   cp -r ${MSH_TEMPLATES}/example-profile ${MSH_PROFILES}/default

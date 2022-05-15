@@ -920,29 +920,6 @@ function prompt_char {
     scm_char
 }
 
-function battery_char {
-    if [[ "${THEME_BATTERY_PERCENTAGE_CHECK}" = true ]]; then
-        echo -e "${bold_red}$(battery_percentage)%"
-    fi
-}
-
-if ! _command_exists 'battery_charge' ; then
-    # if user has installed battery plugin, skip this...
-    function battery_charge (){
-        # no op
-        echo -n
-    }
-fi
-
-# The battery_char function depends on the presence of the battery_percentage function.
-# If battery_percentage is not defined, then define battery_char as a no-op.
-if ! _command_exists 'battery_percentage' ; then
-    function battery_char (){
-      # no op
-      echo -n
-    }
-fi
-
 # Returns true if $1 is a shell function.
 fn_exists() {
   type $1 | grep -q 'shell function'

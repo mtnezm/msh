@@ -943,14 +943,6 @@ if ! _command_exists 'battery_percentage' ; then
     }
 fi
 
-function aws_profile {
-  if [[ $AWS_DEFAULT_PROFILE ]]; then
-    echo -e "${AWS_DEFAULT_PROFILE}"
-  else
-    echo -e "default"
-  fi
-}
-
 # Returns true if $1 is a shell function.
 fn_exists() {
   type $1 | grep -q 'shell function'

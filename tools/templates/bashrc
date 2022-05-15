@@ -1,2 +1,0 @@
-[[ $- != *i* ]] && return   # Bail out early if non-interactive
-source ${HOME}/.mshrc       # Load shell config

@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-MSH="~/.msh"
-MSH_TEMPLATES="~/.msh/tools/templates"
-MSH_PROFILES="~/.msh/include/profiles"
+MSH="${HOME}/.msh"
+MSH_TEMPLATES="${HOME}/.msh/tools/templates"
+MSH_PROFILES="${HOME}/.msh/modules/profiles"
 
 function install_msh() {
   cd $(dirname "$0")                                  # Start working from main path
@@ -15,7 +15,7 @@ function install_msh() {
   mv "${PWD%/*}" "${MSH}"                             # Place MSH rootdir
 
   cp -f "${MSH_TEMPLATES}/mshrc" "${HOME}/.mshrc"     # Install new .mshrc file
-  echo "source ~/.mshrc" >> ~/.bashrc                 # Enable MSH
+  echo "source ${HOME}/.mshrc" >> ~/.bashrc           # Enable MSH
 
   # Enable an empty example profile by default
   cp -r "${MSH_TEMPLATES}/example-profile" "${MSH_PROFILES}/default"

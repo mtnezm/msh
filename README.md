@@ -72,8 +72,8 @@ Some options provided by the `msh` command (available after installing MSH) are:
 
 Current repository structure is as follows:
 
-- `modules/`: This is where contents for separate profiles and key elements of the tool (aliases, completions, plugins and themes by default) are stored. Additional custom stuff should be placed here
 - `lib/`: Additional configuration files, such as the ones responsible for enabling the multi-profile feature and the default shell behavior
+- `modules/`: This is where contents for separate profiles and key elements of the tool (aliases, completions, plugins and themes by default) are stored. Additional custom stuff should be placed here
 - `tools/`: Utilities related to the project, such as MSH installation and removal scripts and templates for new profiles
 
 ### **ALIASES, COMPLETIONS AND PLUGINS**

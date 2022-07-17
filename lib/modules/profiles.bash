@@ -55,7 +55,8 @@ cat ${MSH_PROFILES}/default/files/gitconfig-default >> ${HOME}/.config/git/confi
 # Enable GIT conditional settings feature
 for ACTIVE_PROFILE in ${profiles[@]}; do
   [ -f ${MSH_PROFILES}/${ACTIVE_PROFILE}/files/gitconfig ] && \
-  echo -e "[includeIf \"gitdir:$(head -1 ${MSH_PROFILES}/${ACTIVE_PROFILE}/files/gitconfig | awk -F':' '{ print $2}')\"]\npath = ${MSH_PROFILES}/${ACTIVE_PROFILE}/files/gitconfig\n" >> ${HOME}/.config/git/config
+    echo -e "[includeIf \"gitdir:$(head -1 ${MSH_PROFILES}/${ACTIVE_PROFILE}/files/gitconfig | \
+    awk -F':' '{ print $2}')\"]\npath = ${MSH_PROFILES}/${ACTIVE_PROFILE}/files/gitconfig\n" >> ${HOME}/.config/git/config
 done
 
 

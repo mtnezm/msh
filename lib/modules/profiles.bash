@@ -26,11 +26,38 @@ for PROFILE in $(find ${MSH_PROFILES} -maxdepth 1 -mindepth 1 -not -type f -not 
   inactive_profiles=$(echo ${inactive_profiles} | awk '{for (i=1;i<=NF;i++) if (!a[$i]++) printf("%s%s",$i,FS)}{printf("\n")}')
 done
 
+
 #
-# Enable submodule for SSH multi-profile configuration merging
+# Enable SSH multi-profile configuration merging
 #
 
-source ${MSH_LIB_MODULES}/profiles-ssh-submodule.bash
+[ -f ${HOME}/.ssh/config ] && >| ${HOME}/.ssh/config
+
+pkill ssh-agent       # Avoid duplicate SSH agent processes after each reload() usage
+
+# Add custom SSH settings, if present, to the default SSH config file
+for ACTIVE_PROFILE in ${profiles[@]}; do
+  [ -f ${MSH_PROFILES}/${ACTIVE_PROFILE}/ssh/config ] && \
+  cat ${MSH_PROFILES}/${ACTIVE_PROFILE}/ssh/config >> ${HOME}/.ssh/config
+done
+
+
+#
+# Enable GIT multi-profile configuration merging
+#
+
+[ -f ${HOME}/.config/git/config ] && >| ${HOME}/.config/git/config
+
+# Enable default GIT settings
+
+cat ${MSH_PROFILES}/default/files/gitconfig-default >> ${HOME}/.config/git/config
+
+# Enable GIT conditional settings feature
+for ACTIVE_PROFILE in ${profiles[@]}; do
+  [ -f ${MSH_PROFILES}/${ACTIVE_PROFILE}/files/gitconfig ] && \
+  echo -e "[includeIf \"gitdir:$(head -1 ${MSH_PROFILES}/${ACTIVE_PROFILE}/files/gitconfig | awk -F':' '{ print $2}')\"]\npath = ${MSH_PROFILES}/${ACTIVE_PROFILE}/files/gitconfig\n" >> ${HOME}/.config/git/config
+done
+
 
 #
 # Unload contents from inactive profiles

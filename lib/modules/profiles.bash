@@ -46,11 +46,12 @@ done
 # Enable GIT multi-profile configuration merging
 #
 
-[ -f ${HOME}/.config/git/config ] && >| ${HOME}/.config/git/config
+>| ${HOME}/.config/git/config
 
-# Enable default GIT settings
+# Enable default GIT settings, if existing
 
-cat ${MSH_PROFILES}/default/files/gitconfig-default >> ${HOME}/.config/git/config
+[ -f ${MSH_PROFILES}/default/files/gitconfig-default ] && \
+cat ${MSH_PROFILES}/default/files/gitconfig-default >| ${HOME}/.config/git/config
 
 # Enable GIT conditional settings feature
 for ACTIVE_PROFILE in ${profiles[@]}; do

@@ -91,7 +91,7 @@ msh() {
               echo -e "\n Too many arguments!\n"
               return 1
             elif [ "$#" -ne 3 ]; then
-              echo -e "\n Error: Two arguments needed. Options available are: aliases|completion|plugin|profile <component_name>\n\n Example:\n  $ msh edit alias ansible\n"
+              echo -e "\n Error: Two arguments needed. Options available are: aliases|completion|plugin|profile <component_name>\n\n Example:\n  $ msh edit aliases ansible\n"
               return 1
             else
               if [ -f "${MSH_ALIASES}/$3.alias" ]; then
@@ -171,6 +171,31 @@ msh() {
   esac
 
 }
+
+_msh-autocomplete() {
+
+  local cur prev opts
+
+  case $COMP_CWORD in
+    1) opts="reload show edit"
+    ;;
+    2) if [ ${COMP_WORDS[COMP_CWORD-1]} = "show" ]; then
+        opts="-h --help aliases completions plugins profiles all available"
+       else [ ${COMP_WORDS[COMP_CWORD-1]} = "edit" ]
+        opts="-h --help aliases completions component plugin profile theme"
+        fi
+    ;;
+    *) ;;
+  esac
+
+  COMPREPLY=()
+  cur="${COMP_WORDS[COMP_CWORD]}"
+  prev="${COMP_WORDS[COMP_CWORD-1]}"
+  COMPREPLY=( $(compgen -W "$opts" -- ${cur}) )
+  return 0
+}
+
+complete -F _msh-autocomplete msh
 
 
 ####

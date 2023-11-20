@@ -139,7 +139,7 @@ ___brainy_prompt_todo() {
 	[ -z "$(which todo.sh)" ] && return
 	color=$bold_white
 	box="[|]"
-	info="t:$(todo.sh ls | egrep "TODO: [0-9]+ of ([0-9]+)" | awk '{ print $4 }' )"
+	info="t:$(todo.sh ls | grep -E "TODO: [0-9]+ of ([0-9]+)" | awk '{ print $4 }' )"
 	printf "%s|%s|%s|%s" "${color}" "${info}" "${bold_green}" "${box}"
 }
 

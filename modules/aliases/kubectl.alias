@@ -17,3 +17,5 @@ alias kcnetshoot='kubectl run --generator=run-pod/v1 netshoot-$(date +%s) --rm -
 alias kcaf='kubectl apply -f'
 alias kcdf='kubectl delete -f'
 alias kcgpon='kubectl get pod -o=custom-columns=NAME:.metadata.name,STATUS:.status.phase,NODE:.spec.nodeName --all-namespaces'
+
+alias argocd='/bin/argocd --grpc-web'

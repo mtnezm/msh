@@ -19,7 +19,7 @@ fn_exists() {
 msh() {
 
   if [ -z "$1" ]; then
-    echo -e "\n msh - Manage your terminal behavior with ease.\n\n Commands:\n\n edit\tModify the different components to your like\n reload\tApply changes to your current shell session\n show\tList the available/active items for the different components\n\n Copyright (C) 2020-2021 Miguel Martínez <mtnezm@linux.com>\n Distributed under terms of the MIT license.\n"
+    echo -e "\n msh - Manage your terminal behavior with ease.\n\n Commands:\n\n edit\tModify the different components to your like\n reload\tApply changes to your current shell session\n show\tList the available/active items for the different components\n"
     return 0
   fi
 

@@ -49,7 +49,7 @@ msh() {
           completions) echo ${completions[@]} |tr " " \\n |sort ;;
           plugins) echo ${plugins[@]} |tr " " \\n |sort ;;
           profiles) echo ${profiles[@]} |tr " " \\n |sort ;;
-          all) echo -e "\n->.Active.aliases:\n\n${aliases[@]}\n\n->.Active.completions:\n\n${completions[@]}\n\n->.Active.plugins:\n\n${plugins[@]}\n\n->.Active.profiles:\n\n${profiles[@]}\n" |tr " " \\n |tr \. ' ' ;;
+          all) echo -e "\n=>.Active.aliases:\n\n${aliases[@]}\n\n=>.Active.completions:\n\n${completions[@]}\n\n=>.Active.plugins:\n\n${plugins[@]}\n\n=>.Active.profiles:\n\n${profiles[@]}\n" |tr " " \\n |tr \. ' ' ;;
           *) echo -e "\n Error: \"$2\" is unknown. Options available are:\n\n  - aliases\n  - completions\n  - plugins\n  - profiles\n  - all\n" ; return 1 ;;
         esac
       elif [ "$#" -eq 3 ]; then
